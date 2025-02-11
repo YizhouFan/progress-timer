@@ -1,0 +1,13 @@
+{
+    "project_name": "example_project",
+    "progress_trackers": [
+        {
+            "name": "tracker_1",
+            "total": 81267
+        },
+        {
+            "name": "tracker_2",
+            "total": 1841
+        }
+    ]
+}
