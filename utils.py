@@ -1,6 +1,5 @@
 def human_readable_time_string(seconds):
     result = ""
-    seconds
     hours = 0
     minutes = 0
     if seconds >= 3600:

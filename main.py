@@ -1,6 +1,5 @@
-import json
 import argparse
-
+import json
 from datetime import datetime
 
 from utils import human_readable_time_string
