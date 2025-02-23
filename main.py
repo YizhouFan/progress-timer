@@ -52,14 +52,19 @@ def show_session_summary():
     )
     total_net_duration = sum([s["final_net_duration"] for s in DATA["sessions"]])
     print(
-        f"Good Job! You worked on {CONFIG['project_name']} for {human_readable_time} in this session. You've been working on it for {human_readable_time_string(total_net_duration)}."
+        f"Good Job! You worked on {CONFIG['project_name']} for {human_readable_time} in this session. "
+        + f"You've been working on it for {human_readable_time_string(total_net_duration)}."
     )
     for i, tracker in enumerate(CONFIG["progress_trackers"]):
         total_progress = sum([s["progress"][i]["progress"] for s in DATA["sessions"]])
         velocity = total_progress / total_net_duration
-        forecasted_duration = tracker["total"] / velocity
+        forecasted_remaining_duration = (tracker["total"] - total_progress) / velocity
         print(
-            f"Progress for {tracker['name']} is now {total_progress}(+{latest_session['progress'][i]['progress']})/{tracker['total']} or {total_progress/tracker['total']*100:.2f}%(+{latest_session['progress'][i]['progress']/tracker['total']*100:.2f}%). The progress will be 100% in {human_readable_time_string(forecasted_duration)}."
+            f"Progress for {tracker['name']} is now {total_progress}"
+            + f"(+{latest_session['progress'][i]['progress']})/{tracker['total']} or "
+            + f"{total_progress/tracker['total']*100:.2f}%"
+            + f"(+{latest_session['progress'][i]['progress']/tracker['total']*100:.2f}%). "
+            + f"The progress will be 100% in {human_readable_time_string(forecasted_remaining_duration)}."
         )
 
 
@@ -107,7 +112,8 @@ def stop():
         show_session_summary()
     elif DATA["status"] == "stopped":
         print(
-            f"Project {CONFIG['project_name']} is not being timed. This will not do anything. Here is the status of the latest session."
+            f"Project {CONFIG['project_name']} is not being timed. "
+            + f"This will not do anything. Here is the status of the latest session."
         )
         show_session_summary()
     else:
