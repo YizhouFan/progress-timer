@@ -28,9 +28,7 @@ def update_stop_ts(ts):
         net_duration_list.append(ts - session["latest_active_ts"])
         session["net_duration"] = net_duration_list
     session["progress"] = input_progress()
-    session["final_net_duration"] = sum(
-        session.get("net_duration", [session["duration"]])
-    )
+    session["final_net_duration"] = sum(session.get("net_duration", [session["duration"]]))
     DATA["sessions"][-1] = session
     DATA["status"] = "stopped"
     with open("data/example_project.json", "w") as f:
@@ -47,9 +45,7 @@ def input_progress():
 
 def show_session_summary():
     latest_session = DATA["sessions"][-1]
-    human_readable_time = human_readable_time_string(
-        latest_session["final_net_duration"]
-    )
+    human_readable_time = human_readable_time_string(latest_session["final_net_duration"])
     total_net_duration = sum([s["final_net_duration"] for s in DATA["sessions"]])
     print(
         f"Good Job! You worked on {CONFIG['project_name']} for {human_readable_time} in the latest session. "
@@ -62,8 +58,8 @@ def show_session_summary():
         print(
             f"Progress for {tracker['name']} is now {total_progress}"
             + f"(+{latest_session['progress'][i]['progress']})/{tracker['total']} or "
-            + f"{total_progress/tracker['total']*100:.2f}%"
-            + f"(+{latest_session['progress'][i]['progress']/tracker['total']*100:.2f}%). "
+            + f"{total_progress / tracker['total'] * 100:.2f}%"
+            + f"(+{latest_session['progress'][i]['progress'] / tracker['total'] * 100:.2f}%). "
             + f"The progress will be 100% in {human_readable_time_string(forecasted_remaining_duration)}."
         )
 
@@ -99,9 +95,7 @@ def start():
         update_start_ts(ts)
         print("The session is now started.")
     elif DATA["status"] == "started":
-        print(
-            f"Project {CONFIG['project_name']} is already being timed. This will not do anything."
-        )
+        print(f"Project {CONFIG['project_name']} is already being timed. This will not do anything.")
     else:
         raise NotImplementedError(f"Unknown status {DATA['status']} detected!")
 
@@ -114,7 +108,7 @@ def stop():
     elif DATA["status"] == "stopped":
         print(
             f"Project {CONFIG['project_name']} is not being timed. "
-            + f"This will not do anything. Here is the status of the latest session."
+            + "This will not do anything. Here is the status of the latest session."
         )
         show_session_summary()
     else:
