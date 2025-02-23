@@ -52,7 +52,7 @@ def show_session_summary():
     )
     total_net_duration = sum([s["final_net_duration"] for s in DATA["sessions"]])
     print(
-        f"Good Job! You worked on {CONFIG['project_name']} for {human_readable_time} in this session. "
+        f"Good Job! You worked on {CONFIG['project_name']} for {human_readable_time} in the latest session. "
         + f"You've been working on it for {human_readable_time_string(total_net_duration)}."
     )
     for i, tracker in enumerate(CONFIG["progress_trackers"]):
@@ -97,6 +97,7 @@ def start():
     if DATA["status"] == "stopped":
         ts = datetime.now().timestamp()
         update_start_ts(ts)
+        print("The session is now started.")
     elif DATA["status"] == "started":
         print(
             f"Project {CONFIG['project_name']} is already being timed. This will not do anything."
@@ -124,6 +125,7 @@ def pause():
     if DATA["status"] in ["started", "unpaused"]:
         ts = datetime.now().timestamp()
         update_pause_ts(ts)
+        print("The session is now paused.")
     else:
         raise NotImplementedError(f"Unknown status {DATA['status']} detected!")
 
@@ -132,6 +134,7 @@ def unpause():
     if DATA["status"] == "paused":
         ts = datetime.now().timestamp()
         update_unpause_ts(ts)
+        print("The session is now unpaused.")
     else:
         raise NotImplementedError(f"Unknown status {DATA['status']} detected!")
 
