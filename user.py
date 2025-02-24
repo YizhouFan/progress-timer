@@ -43,7 +43,19 @@ class User:
         print(f"Project {name} is successfully created.")
 
     def update_default_project(self, project: str) -> None:
+        if project == self.default_project:
+            print(f"{project} is already the default project. This will do nothing.")
+            return
         if project not in self.projects:
             self.make_new_project(project)
         self.default_project = project
+        with open(self.config_file_path, "w") as f:
+            json.dump(self.package(), f, indent=4)
         print(f"{project} is now the default project.")
+
+    def package(self) -> dict:
+        return {
+            "projects_path": self.projects_path,
+            "sessions_path": self.sessions_path,
+            "default_project": self.default_project,
+        }
