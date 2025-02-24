@@ -1,0 +1,5 @@
+{
+    "projects_path": "projects",
+    "sessions_path": "sessions",
+    "default_project": "example_project"
+}

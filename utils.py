@@ -1,4 +1,6 @@
-def human_readable_time_string(seconds):
+def human_readable_time_string(seconds: float) -> str:
+    if seconds < 0:
+        return "negative time"
     result = ""
     hours = 0
     minutes = 0
@@ -12,8 +14,8 @@ def human_readable_time_string(seconds):
         postfix = "minutes" if minutes > 1 else "minute"
         result += f" {minutes:.0f} {postfix}"
     seconds -= minutes * 60
-    if seconds >= 1:
-        postfix = "seconds" if seconds > 1 else "seconds"
+    if seconds >= 0:
+        postfix = "seconds" if seconds > 1 else "second"
         result += f" {seconds:.0f} {postfix}"
     result = result.strip()
     return result
