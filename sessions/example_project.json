@@ -1,0 +1,82 @@
+{
+    "status": "stopped",
+    "sessions": [
+        {
+            "start_ts": 1739336773.863051,
+            "latest_active_ts": 1739336773.863051,
+            "pause_ts": [],
+            "net_duration": [],
+            "unpause_ts": [],
+            "stop_ts": 1739338107.278316,
+            "duration": 1333.415265083313,
+            "progress": [
+                {
+                    "tracker_name": "tracker_1",
+                    "progress": 264
+                },
+                {
+                    "tracker_name": "tracker_2",
+                    "progress": 11
+                }
+            ],
+            "final_net_duration": 1333.415265083313
+        },
+        {
+            "start_ts": 1739348205.029844,
+            "latest_active_ts": 1739356027.524659,
+            "pause_ts": [
+                1739348953.659107,
+                1739355534.861698,
+                1739355970.488878
+            ],
+            "net_duration": [
+                748.6292629241943,
+                602.8034298419952,
+                298.05572295188904,
+                1876.6311180591583
+            ],
+            "unpause_ts": [
+                1739354932.058268,
+                1739355672.433155,
+                1739356027.524659
+            ],
+            "stop_ts": 1739357904.155777,
+            "duration": 9699.1259329319,
+            "progress": [
+                {
+                    "tracker_name": "tracker_1",
+                    "progress": 769
+                },
+                {
+                    "tracker_name": "tracker_2",
+                    "progress": 13
+                }
+            ],
+            "final_net_duration": 3526.119533777237
+        },
+        {
+            "start_ts": 1739714132.150496,
+            "latest_active_ts": 1739714132.150496,
+            "pause_ts": [
+                1739716838.323876
+            ],
+            "net_duration": [
+                2706.1733798980713
+            ],
+            "unpause_ts": [],
+            "stop_ts": 1739719214.169439,
+            "duration": 5082.018943071365,
+            "progress": [
+                {
+                    "tracker_name": "tracker_1",
+                    "progress": 706
+                },
+                {
+                    "tracker_name": "tracker_2",
+                    "progress": 12
+                }
+            ],
+            "final_net_duration": 2706.1733798980713
+        }
+    ]
+}

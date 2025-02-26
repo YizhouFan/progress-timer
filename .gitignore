@@ -1,8 +1,9 @@
-sessions/
 sessions_backup/
 
 projects/*
 !projects/example_project.json
+sessions/*
+!sessions/example_project.json
 settings/*
 !settings/user.json
 
