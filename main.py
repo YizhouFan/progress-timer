@@ -17,6 +17,13 @@ def main():
     args = parser.parse_args()
     mode = args.mode
 
+    if mode == "switch":
+        project_name = input(
+            "Enter an existing project to set as the default, or name a new project name to set it up: "
+        )
+        user.update_default_project(project_name)
+        return
+
     project = Project(user.default_project, user.projects_path, user.sessions_path)
 
     if mode == "start":
@@ -29,11 +36,6 @@ def main():
         project.unpause()
     elif mode == "stats":
         project.summary()
-    elif mode == "switch":
-        project_name = input(
-            "Enter an existing project to set as the default, or name a new project name to set it up: "
-        )
-        user.update_default_project(project_name)
     else:
         raise NotImplementedError(f"Run mode {mode} is not supported!")
 
