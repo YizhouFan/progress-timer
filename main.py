@@ -35,7 +35,7 @@ def main():
     elif mode == "unpause":
         project.unpause()
     elif mode == "stats":
-        project.summary()
+        project.stats()
     else:
         raise NotImplementedError(f"Run mode {mode} is not supported!")
 

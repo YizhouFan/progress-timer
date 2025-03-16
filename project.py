@@ -25,7 +25,7 @@ class Project:
     def latest_session(self) -> Session:
         return self.sessions[-1]
 
-    def summary(self) -> None:
+    def summary_project(self) -> None:
         human_readable_time = human_readable_time_string(self.latest_session().final_net_duration)
         total_net_duration = sum([s.final_net_duration for s in self.sessions])
         print(
@@ -44,17 +44,29 @@ class Project:
                 + f"The progress will be 100% in {human_readable_time_string(forecasted_remaining_duration)}."
             )
 
+    def summary_session(self) -> None:
+        latest_session_start_datetime = datetime.fromtimestamp(self.latest_session().start_ts).strftime(
+            "%Y-%m-%d %H:%M:%S"
+        )
+        print(f"You have an ongoing session started at {latest_session_start_datetime}.")
+
+    def stats(self) -> None:
+        if self.status == "stopped":
+            self.summary_project()
+        else:
+            self.summary_session()
+
     def stop(self) -> None:
         if self.status in ["started", "paused", "unpaused"]:
             ts = datetime.now().timestamp()
             self._update_stop_ts(ts)
-            self.summary()
+            self.summary_project()
         elif self.status == "stopped":
             print(
                 f"Project {self.name} is not being timed. "
                 + "This will not do anything. Here is the status of the latest session."
             )
-            self.summary()
+            self.summary_project()
         else:
             raise ValueError(f"Unknown status {self.status} detected!")
 
